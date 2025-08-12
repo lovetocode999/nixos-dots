@@ -20,6 +20,7 @@
 
   fileSystems."/persist" =
     { device = "zroot/nixos/persist";
+      neededForBoot = true;
       fsType = "zfs";
     };
 
@@ -35,6 +36,7 @@
 
   fileSystems."/nix" =
     { device = "zroot/nixos/persist/nix";
+      neededForBoot = true;
       fsType = "zfs";
     };
 

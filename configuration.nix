@@ -4,15 +4,19 @@
 
 { config, lib, pkgs, ... }:
 
+let
+  impermanence = builtins.fetchTarball "https://github.com/nix-community/impermanence/archive/master.tar.gz";
+in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./lib/zfsbootmenu.nix
+      "${impermanence}/nixos.nix"
     ];
 
   # Use the systemd-boot EFI boot loader.
-  #boot.loader.systemd-boot.enable = true;
+  #boot.loader.systemd-boot.enable = true;""
   #boot.loader.efi.canTouchEfiVariables = true;
 
   # Wipe the system on boot
@@ -25,6 +29,16 @@
     enable = true;
     bootfs = "zroot/nixos/persist/kernels";
     bootdir = "/kernels/boot";
+  };
+
+  # persistence
+  environment.persistence."/persist" = {
+    hideMounts = true;
+    directories = [
+      "/etc/nixos"
+      "/var/lib/systemd/coredump"
+      "/etc/NetworkManager/system-connections"
+    ];
   };
 
   networking.hostName = "nixos"; # Define your hostname.
