@@ -25,15 +25,15 @@ in
             '';
           };
 
-	  bootdir = lib.mkOption {
-	    type = lib.types.path;
-	    default = "/boot";
-	    description = ''
-	      The directory to put the initrd and kernel in. Note that
-	      ZFSBootMenu will refuse to boot unless this is seen by it as
-	      /boot when mounting the bootfs at /.
-	    '';
-	  };
+          bootdir = lib.mkOption {
+            type = lib.types.path;
+            default = "/boot";
+            description = ''
+              The directory to put the initrd and kernel in. Note that
+              ZFSBootMenu will refuse to boot unless this is seen by it as
+              /boot when mounting the bootfs at /.
+            '';
+          };
 
           keyfile = lib.mkOption {
             type = lib.types.nullOr lib.types.path;
