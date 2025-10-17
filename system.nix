@@ -18,9 +18,15 @@
   networking.hostId = "b11f2e76";
 
   # Wifi
-  networking.wireless.iwd.enable = true;
+  #networking.wireless.iwd.enable = true;
   networking.networkmanager.enable = true;
-  networking.networkmanager.wifi.backend = "iwd";
+  #networking.networkmanager.wifi.backend = "iwd";
+
+  # Firewall
+  networking.firewall = rec {
+    allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
+    allowedUDPPortRanges = allowedTCPPortRanges;
+  };
 
   # Bluetooth
   hardware.bluetooth = {
@@ -54,10 +60,21 @@
     neovim
     wget
   ];
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "aseprite"
+    ];
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   security.polkit.enable = true;
+
+  # Enable some experimental features
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

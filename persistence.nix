@@ -31,5 +31,7 @@
     {
       "${config.users.users.lovetocode999.home}/Documents".d = user-read-write;
       "${config.users.users.lovetocode999.home}/Pictures".d = user-read-write;
+      "${config.users.users.lovetocode999.home}/ldjam58".d = user-read-write;
+      "${config.users.users.lovetocode999.home}/Projects".d = user-read-write;
     };
 }

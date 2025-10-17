@@ -14,6 +14,7 @@
     home = "/home/lovetocode999";
     packages = with pkgs; [
       tree
+      love
     ];
   };
 }
