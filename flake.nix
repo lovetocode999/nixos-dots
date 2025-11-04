@@ -9,13 +9,16 @@
     };
     impermanence.url = "github:nix-community/impermanence";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+    };
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{self, home-manager, impermanence, nixpkgs, stylix, ...}: {
+  outputs = inputs@{self, home-manager, impermanence, nixpkgs, nixvim, stylix, ...}: {
     nixosConfigurations = let
         lib = nixpkgs.lib;
       in 
@@ -26,12 +29,16 @@
             ./hardware-configuration.nix
             ./system.nix
             ./console.nix
+	    ./kmonad.nix
             ./persistence.nix
             ./greeter.nix
             ./users.nix
             ./stylix.nix
+	    ./nixvim.nix
 
             impermanence.nixosModules.impermanence
+
+	    nixvim.nixosModules.nixvim
 
             stylix.nixosModules.stylix
 

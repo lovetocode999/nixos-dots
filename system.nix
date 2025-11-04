@@ -57,7 +57,6 @@
     acpi
     git
     htop
-    neovim
     wget
   ];
   nixpkgs.config.allowUnfreePredicate =

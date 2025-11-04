@@ -4,7 +4,7 @@
   stylix = {
     enable = true;
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/caroline.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
     image = ./mars.jpeg;
 
     fonts = {
@@ -34,5 +34,7 @@
       name = "Bibata-Original-Classic";
       size = 32;
     };
+
+    targets.nixvim.enable = false;
   };
 }
