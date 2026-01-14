@@ -17,7 +17,7 @@ in
         command = ''
           ${pkgs.kmscon}/libexec/kmscon/kmscon --seats=seat0 --no-switchvt --configdir \
           ${kmscon-conf} --login ${config.services.kmscon.extraOptions} --no-reset-env \
-          -- ${pkgs.tuigreet}/bin/tuigreet --time --cmd sway
+          -- ${pkgs.tuigreet}/bin/tuigreet --time --time-format '%Y-%m-%d %H:%M:%S ' --issue --cmd sway
         '';
         user = "root";
       };

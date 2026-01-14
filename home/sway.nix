@@ -13,7 +13,7 @@
     config = rec {
       input = {
         "type:keyboard" = {
-	  xkb_layout = "us(workman)";
+	  xkb_layout = "us(intl)";
 	};
       };
       output = {

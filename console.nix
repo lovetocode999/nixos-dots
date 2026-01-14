@@ -10,5 +10,5 @@
   };
   # Configure xkb
   services.xserver.xkb.layout = "us";
-  services.xserver.xkb.variant = "workman";
+  services.xserver.xkb.variant = "intl";
 }

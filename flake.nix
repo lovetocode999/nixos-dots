@@ -3,6 +3,10 @@
   description = "Lovetocode999's nix configuration";
 
   inputs = {
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,6 +39,7 @@
             ./users.nix
             ./stylix.nix
 	    ./nixvim.nix
+	    ./zsh.nix
 
             impermanence.nixosModules.impermanence
 
@@ -44,10 +49,12 @@
 
             home-manager.nixosModules.home-manager
             {
+	      home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users = {
                 "lovetocode999" = ./home.nix;
+		#"root" = ./home-root.nix;
               };
             }
           ];

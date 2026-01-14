@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -6,15 +6,28 @@
     ./home/sway.nix
     ./home/kitty.nix
     ./home/qutebrowser.nix
+    ./home/zsh.nix
+    inputs.dms.homeModules.dankMaterialShell.default
   ];
 
   home.packages = with pkgs; [
     aseprite
-    wl-clipboard
+    brightnessctl
     grim
     mako
-    brightnessctl
+    pulsemixer
+    wl-clipboard
   ];
+
+  programs.obsidian.enable = true;
+
+  programs.dankMaterialShell = {
+    enable = true;
+    systemd = {
+      enable = true;
+      restartIfChanged = true;
+    };
+  };
 
   services.kdeconnect.enable = true;
 

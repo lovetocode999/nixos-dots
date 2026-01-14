@@ -22,6 +22,18 @@
   networking.networkmanager.enable = true;
   #networking.networkmanager.wifi.backend = "iwd";
 
+  # SSH
+  services.openssh = {
+    enable = true;
+    ports = [ 5432 ];
+    settings =  {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      PermitRootLogin = "no";
+      AllowUsers = [ "lovetocode999" ];
+    };
+  };
+
   # Firewall
   networking.firewall = rec {
     allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
@@ -47,10 +59,14 @@
   services.pipewire = {
     enable = true;
     pulse.enable = true;
+    extraConfig = {
+      pipewire."99-silent-bell.conf" = {
+        "context.properties" = {
+	  "module.x11.bell" = false;
+	};
+      };
+    };
   };
-
-  # Default system shell
-  programs.zsh.enable = true;
 
   # System-wide packages
   environment.systemPackages = with pkgs; [
@@ -63,6 +79,7 @@
     pkg:
     builtins.elem (lib.getName pkg) [
       "aseprite"
+      "obsidian"
     ];
 
   # Enable the X11 windowing system.

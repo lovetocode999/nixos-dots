@@ -11,6 +11,7 @@
     hideMounts = true;
     directories = [
       "/etc/nixos"
+      "/etc/ssh"
       "/etc/NetworkManager/system-connections"
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
@@ -33,5 +34,6 @@
       "${config.users.users.lovetocode999.home}/Pictures".d = user-read-write;
       "${config.users.users.lovetocode999.home}/ldjam58".d = user-read-write;
       "${config.users.users.lovetocode999.home}/Projects".d = user-read-write;
+      "${config.users.users.lovetocode999.home}/School".d = user-read-write;
     };
 }
